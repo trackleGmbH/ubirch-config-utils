@@ -1,2 +1,2 @@
 # ubirch-config-utils
-commonconfig related code
+common config related code
