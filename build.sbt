@@ -20,35 +20,33 @@ scmInfo := Some(ScmInfo(
 /*
  * CREDENTIALS
  ********************************************************/
-
+//
 (sys.env.get("CLOUDREPO_USER"), sys.env.get("CLOUDREPO_PW")) match {
   case (Some(username), Some(password)) =>
     println("USERNAME and/or PASSWORD found.")
-    credentials += Credentials("mycloudrepo.ubirch.utils", "ubirch.mycloudrepo.io", username, password)
+    credentials += Credentials("ubirch.mycloudrepo.io", "ubirch.mycloudrepo.io", username, password)
   case _ =>
-    println("USERNAME and/or PASSWORD is taken from /.sbt/.credentials.")
-    credentials += Credentials(Path.userHome / ".sbt" / ".credentials-public")
+    println("USERNAME and/or PASSWORD is taken from /.sbt/.credentials")
+    credentials += Credentials(Path.userHome / ".sbt" / ".credentials")
 }
-
 
 /*
  * RESOLVER
  ********************************************************/
 
-val resolverUbirchUtils = "mycloudrepo.ubirch.utils" at "https://ubirch.mycloudrepo.io/repositories/ubirch-utils-mvn"
 
 resolvers ++= Seq(
   Resolver.sonatypeRepo("releases"),
-  Resolver.sonatypeRepo("snapshots"),
-  resolverUbirchUtils)
+  Resolver.sonatypeRepo("snapshots"))
 
 
 /*
  * PUBLISHING
  ********************************************************/
 
-publishTo := Some(resolverUbirchUtils)
+publishTo := Some("io.cloudrepo" at "https://ubirch.mycloudrepo.io/repositories/ubirch-utils-mvn")
 publishMavenStyle := true
+
 
 
 /*
