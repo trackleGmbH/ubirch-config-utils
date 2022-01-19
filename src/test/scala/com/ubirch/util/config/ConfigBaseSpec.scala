@@ -1,18 +1,19 @@
 package com.ubirch.util.config
 
-import org.scalatest.{FeatureSpec, Matchers}
+import org.scalatest.featurespec.AnyFeatureSpec
+import org.scalatest.matchers.should.Matchers
 
 /**
   * author: cvandrei
   * since: 2018-03-07
   */
-class ConfigBaseSpec extends FeatureSpec
+class ConfigBaseSpec extends AnyFeatureSpec
   with Matchers
   with ConfigBase {
 
-  feature("environmentId()") {
+  Feature("environmentId()") {
 
-    scenario("read config --> ubirch-local") {
+    Scenario("read config --> ubirch-local") {
       environmentId() shouldBe "test-local"
     }
 
